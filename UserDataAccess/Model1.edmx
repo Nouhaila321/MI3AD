@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="USERSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="A_LOGIN" Type="varchar" MaxLength="100" />
+          <Property Name="A_MDP" Type="varchar" MaxLength="100" />
+          <Property Name="A_EMAIL" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Aviss">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_RDV" Type="int" />
+          <Property Name="NOTE_FACIL" Type="int" />
+          <Property Name="NOTE_ACCUEIL" Type="int" />
+          <Property Name="NOTE_PROMPATITUDE" Type="int" />
+          <Property Name="NOTE_DIAG" Type="int" />
+          <Property Name="NOTE_RECOM" Type="int" />
+        </EntityType>
+        <EntityType Name="Doctors">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM" Type="nvarchar" MaxLength="50" />
+          <Property Name="PRENOM" Type="nvarchar" MaxLength="100" />
+          <Property Name="MDP" Type="nvarchar" MaxLength="100" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="TEL" Type="nvarchar" MaxLength="100" />
+          <Property Name="SPECIALITE" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="RDVs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_User" Type="int" />
+          <Property Name="ID_Doctor" Type="int" />
+          <Property Name="ETAT" Type="nvarchar" MaxLength="100" />
+          <Property Name="DATER" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="PHONE" Type="nvarchar" MaxLength="100" />
+          <Property Name="PRENOM" Type="varchar" MaxLength="255" />
+          <Property Name="MDP" Type="varchar" MaxLength="255" />
+          <Property Name="TEL" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="USERSDBModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Aviss" EntityType="Self.Aviss" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RDVs" EntityType="Self.RDVs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="USERSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Aviss">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_RDV" Type="Int32" />
+          <Property Name="NOTE_FACIL" Type="Int32" />
+          <Property Name="NOTE_ACCUEIL" Type="Int32" />
+          <Property Name="NOTE_PROMPATITUDE" Type="Int32" />
+          <Property Name="NOTE_DIAG" Type="Int32" />
+          <Property Name="NOTE_RECOM" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PRENOM" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MDP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TEL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SPECIALITE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="RDV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_User" Type="Int32" />
+          <Property Name="ID_Doctor" Type="Int32" />
+          <Property Name="ETAT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DATER" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PHONE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PRENOM" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MDP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TEL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="USERSDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Avisses" EntityType="Self.Aviss" />
+          <EntitySet Name="Doctors" EntityType="Self.Doctor" />
+          <EntitySet Name="RDVs" EntityType="Self.RDV" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Admins" EntityType="USERSDBModel.Admin" />
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="A_LOGIN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="A_MDP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="A_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="USERSDBModelStoreContainer" CdmEntityContainer="USERSDBEntities">
+          <EntitySetMapping Name="Avisses">
+            <EntityTypeMapping TypeName="USERSDBModel.Aviss">
+              <MappingFragment StoreEntitySet="Aviss">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_RDV" ColumnName="ID_RDV" />
+                <ScalarProperty Name="NOTE_FACIL" ColumnName="NOTE_FACIL" />
+                <ScalarProperty Name="NOTE_ACCUEIL" ColumnName="NOTE_ACCUEIL" />
+                <ScalarProperty Name="NOTE_PROMPATITUDE" ColumnName="NOTE_PROMPATITUDE" />
+                <ScalarProperty Name="NOTE_DIAG" ColumnName="NOTE_DIAG" />
+                <ScalarProperty Name="NOTE_RECOM" ColumnName="NOTE_RECOM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="USERSDBModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctors">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NOM" ColumnName="NOM" />
+                <ScalarProperty Name="PRENOM" ColumnName="PRENOM" />
+                <ScalarProperty Name="MDP" ColumnName="MDP" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TEL" ColumnName="TEL" />
+                <ScalarProperty Name="SPECIALITE" ColumnName="SPECIALITE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RDVs">
+            <EntityTypeMapping TypeName="USERSDBModel.RDV">
+              <MappingFragment StoreEntitySet="RDVs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="ID_Doctor" ColumnName="ID_Doctor" />
+                <ScalarProperty Name="ETAT" ColumnName="ETAT" />
+                <ScalarProperty Name="DATER" ColumnName="DATER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="USERSDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NOM" ColumnName="NOM" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="PRENOM" ColumnName="PRENOM" />
+                <ScalarProperty Name="MDP" ColumnName="MDP" />
+                <ScalarProperty Name="TEL" ColumnName="TEL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="USERSDBModel.Admin">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="A_EMAIL" ColumnName="A_EMAIL" />
+                <ScalarProperty Name="A_MDP" ColumnName="A_MDP" />
+                <ScalarProperty Name="A_LOGIN" ColumnName="A_LOGIN" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

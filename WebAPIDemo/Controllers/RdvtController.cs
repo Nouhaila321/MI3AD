@@ -24,7 +24,8 @@ namespace WebAPIDemo.Controllers
                 var entity = entities.RDVs.FirstOrDefault(e => e.ID == id);
                 if (entity != null)
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK, entity);
+                    var doc_entity = entities.Doctors.FirstOrDefault(e => e.ID == entity.ID_Doctor);
+                    return Request.CreateResponse(HttpStatusCode.OK, new {entity, doc_entity} );
                 }
                 else
                 {

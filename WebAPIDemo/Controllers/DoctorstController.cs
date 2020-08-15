@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -39,7 +40,7 @@ namespace WebAPIDemo.Controllers
                 }
             }
         }
-        
+
         /*public HttpResponseMessage GetDoctorByname(String name)
         {
             using (USERSDBEntities entities = new USERSDBEntities())
@@ -55,25 +56,22 @@ namespace WebAPIDemo.Controllers
                 }
             }
         }*/
-
-        /*public HttpResponseMessage GetSpecialite()
-        { ----- Select all specialities ----- 
+        /*[HttpGet]
+        public HttpResponseMessage Specialite()
+        { 
             using (USERSDBEntities entities = new USERSDBEntities())
             {
-               /*var items = entities.Doctors.Select(
-                    f => new table_spec { }).ToList();
-                return Request.CreateResponse(HttpStatusCode.OK);
-                    
-                 var items = db.PscDistrictTargetss
-              .Select(f => new MyDto
-               {
-                   TargetName = f.Name,
-                   TargetId = f.Id
-               })
-              .ToList();
-                return Request.CreateResponse(HttpStatusCode.OK, items); 
-            }*/
-        
+                //.Country.Select(c => c.NameofCountry).ToListAsync();
+                //var entity = entities.RDVs.FirstOrDefault(e => e.ID == id);
+                var entity = entities.Doctors.Select(e => e.SPECIALITE).ToList();
+                if(entity != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, entity);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "User with ID = ");
+
+            }
+        }*/
         public HttpResponseMessage Post([FromBody]Doctor D)
         {
             try

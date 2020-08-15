@@ -21,7 +21,7 @@ namespace WebAPIDemo.Controllers
         {
             using (USERSDBEntities entities = new USERSDBEntities())
             {
-                var entity = entities.RDVs.FirstOrDefault(e => e.ID == id);
+                var entity = entities.RDVs.FirstOrDefault(e => e.ID_User == id);
                 if (entity != null)
                 {
                     var doc_entity = entities.Doctors.FirstOrDefault(e => e.ID == entity.ID_Doctor);
